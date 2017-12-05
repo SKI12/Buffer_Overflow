@@ -15,7 +15,7 @@ def main():
 	for string in buffer:
 		print "[*]Fuzzing PASS with %s bytes..." % len(string)
 		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)		
-		s.connect(('192.168.220.144', 110))
+		s.connect(('192.168.220.130', 110))
 		s.recv(1024)
 		s.send('USER test\r\n')
 		s.recv(1024)

